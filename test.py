@@ -3,6 +3,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from appium.webdriver.common.touch_action import TouchAction
 import time
+import openpyxl
+
+data_book = openpyxl.load_workbook("Book1.xlsx")
+data = data_book.active
 
 desired_capabilities = {
     "platformName": "Android",
@@ -75,19 +79,19 @@ guest.click()
 first_name = WebDriverWait(driver, 1000).until(
     EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/etFirstName')))
 first_name.click()
-first_name.send_keys("first")
+first_name.send_keys(data['B2'].value)
 driver.back()
 
 last_name = WebDriverWait(driver, 1000).until(
     EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/etLastName')))
 last_name.click()
-last_name.send_keys("last")
+last_name.send_keys(data['B3'].value)
 driver.back()
 
 email = WebDriverWait(driver, 1000).until(
     EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/etEmail')))
 email.click()
-email.send_keys("test@gmail.com")
+email.send_keys(data['B4'].value)
 driver.back()
 
 country = WebDriverWait(driver, 1000).until(
@@ -102,32 +106,31 @@ state = WebDriverWait(driver, 1000).until(
     EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/stateSpinnerLayout')))
 state.click()
 state_select = WebDriverWait(driver, 1000).until(
-    EC.presence_of_element_located(('xpath',
-                                    "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.TextView[4]")))
+    EC.presence_of_element_located(('xpath', "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.TextView[4]")))
 state_select.click()
 
 company = WebDriverWait(driver, 1000).until(
     EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/etCompanyName')))
 company.click()
-company.send_keys("test company")
+company.send_keys(data['B5'].value)
 driver.back()
 
 city = WebDriverWait(driver, 1000).until(
     EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/etCity')))
 city.click()
-city.send_keys("test city")
+city.send_keys(data['B6'].value)
 driver.back()
 
 street_address = WebDriverWait(driver, 1000).until(
     EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/etStreetAddress')))
 street_address.click()
-street_address.send_keys("street A")
+street_address.send_keys(data['B7'].value)
 driver.back()
 
 zipcode = WebDriverWait(driver, 1000).until(
     EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/etZipCode')))
 zipcode.click()
-zipcode.send_keys("1000")
+zipcode.send_keys(data['B8'].value)
 driver.back()
 
 cont = WebDriverWait(driver, 1000).until(
@@ -136,10 +139,12 @@ cont.click()
 time.sleep(2)
 
 el = WebDriverWait(driver, 1000).until(
-    EC.presence_of_element_located(('xpath', '//android.widget.RelativeLayout[@index=‘3’]')))
+    EC.presence_of_element_located(('xpath', '//android.widget.RelativeLayout[3]')))
 el.click()
+time.sleep(2)
+
 touch = TouchAction(driver)
-touch.press(x=534, y=1206).move_to(x=559, y=458).release().perform()
+touch.press(x=538, y=1521).move_to(x=529, y=471).release().perform()
 
 cont_btn1 = WebDriverWait(driver, 1000).until(
       EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/btnContinue')))
