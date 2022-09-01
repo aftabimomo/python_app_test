@@ -138,42 +138,48 @@ cont = WebDriverWait(driver, 1000).until(
 cont.click()
 time.sleep(2)
 
-el = WebDriverWait(driver, 1000).until(
-    EC.presence_of_element_located(('xpath', '//android.widget.RelativeLayout[3]')))
-el.click()
+# Select next day air
+next_day_air = WebDriverWait(driver, 1000).until(
+    EC.presence_of_element_located(('xpath', '//android.widget.RelativeLayout[4]')))
+next_day_air.click()
 time.sleep(2)
 
 touch = TouchAction(driver)
-touch.press(x=538, y=1521).move_to(x=529, y=471).release().perform()
+touch.long_press(x=525, y=1256).move_to(x=542, y=500).release().perform()
+
+next_day_air.click()
 
 cont_btn1 = WebDriverWait(driver, 1000).until(
       EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/btnContinue')))
 cont_btn1.click()
 
+# Money order
 el_3 = WebDriverWait(driver, 1000).until(
     EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/tvPaymentMethodName')))
 
 for i in range(3):
     touch = TouchAction(driver)
-    touch.press(x=508, y=1618).move_to(x=538, y=420).release().perform()
+    touch.long_press(x=508, y=1618).move_to(x=538, y=420).release().perform()
 
 money_order = WebDriverWait(driver, 1000).until(
     EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/etZipCode')))
 money_order.click()
 
 touch = TouchAction(driver)
-touch.press(x=508, y=1618).move_to(x=538, y=420).release().perform()
+touch.long_press(x=508, y=1618).move_to(x=538, y=420).release().perform()
 
 cont_btn2 = WebDriverWait(driver, 1000).until(
       EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/btnContinue')))
 cont_btn2.click()
 
+# Next
 next_btn = WebDriverWait(driver, 1000).until(
-      EC.presence_of_element_located(('class name', "android.widget.Button")))
+      EC.presence_of_element_located(('xpath', "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View[2]/android.widget.Button")))
 next_btn.click()
 
+# Confirm order
 confirm = WebDriverWait(driver, 1000).until(
-    EC.presence_of_element_located(('id', 'com.nopstation.nopcommerce.nopstationcart:id/btnContinue')))
+    EC.presence_of_element_located(('xpath', '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout[2]/android.widget.FrameLayout[2]/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.Button')))
 confirm.click()
 
 confirm_order = WebDriverWait(driver, 1000).until(
